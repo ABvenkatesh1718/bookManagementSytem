@@ -10,14 +10,14 @@ class bookController extends Controller
 {
     final public function createBook(Request $request)
     {
-        $credentials = $request->only('title','description','author');
+        $credentials = $request->only('title', 'description', 'author');
         $book = new Book();
         $book->fill($credentials);
-        $book->user_id=Auth::id();
+        $book->user_id = Auth::id();
         $book->save();
         $user = Auth::user();
-        $books=Book::where('user_id',Auth::id())->get();
-        return view('BookManagement',['books'=>$books]);
+        $books = Book::where('user_id', Auth::id())->get();
+        return view('BookManagement', ['books' => $books]);
 
     }
 
@@ -35,17 +35,18 @@ class bookController extends Controller
         $book->author = $request->input('author');
         $book->save();
         $user = Auth::user();
-        $books=Book::where('user_id',Auth::id())->get();
-        return view('BookManagement',['books'=>$books]);
+        $books = Book::where('user_id', Auth::id())->get();
+        return view('BookManagement', ['books' => $books]);
     }
 
 
-    public function delete_book($id){
-        $book=Book::findOrFail($id);
+    public function delete_book($id)
+    {
+        $book = Book::findOrFail($id);
         $book->delete();
         $user = Auth::user();
-        $books=Book::where('user_id',Auth::id())->get();
-        return view('BookManagement',['books'=>$books]);
+        $books = Book::where('user_id', Auth::id())->get();
+        return view('BookManagement', ['books' => $books]);
     }
 
 

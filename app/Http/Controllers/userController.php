@@ -18,13 +18,19 @@ class userController extends Controller
         ]);
         $user = new User();
         $user->fill($values);
+
+
         $user->save();
         echo "registration is done bro";
+
         return ;
     }
     final public function getData():void
     {
         $user = User::find(1);
+
+
+
 
         echo $user;
 
